@@ -1,7 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useEffect } from "react";
 
 function App() {
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      const res = await fetch("http://localhost:3200/notifications");
+      const data = await res.json();
+      console.log(data);
+    };
+
+    fetchNotifications().catch(console.error);
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
