@@ -9,5 +9,11 @@
   "workspaces": [
     "app-be",
     "app-fe"
-  ]
+  ],
+  "devDependencies": {
+    "concurrently": "^7.3.0"
+  },
+  "scripts": {
+    "start": "concurrently \"yarn workspace app-fe start\" \"yarn workspace app-be start\""
+  }
 }
