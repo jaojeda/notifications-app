@@ -7,11 +7,18 @@ export const useNotifications = () => {
     const fetchNotifications = async () => {
       const res = await fetch("http://localhost:3200/notifications");
       const data = await res.json();
-      setNotifications(data);
+      const filteredData = filterSnoozed(data);
+      setNotifications(filteredData);
     };
 
     fetchNotifications().catch(console.error);
   }, []);
+
+  const filterSnoozed = (notifications) => {
+    return notifications.filter(
+      (notification) => notification.snooze.lastSnooze + 86400000 < Date.now()
+    );
+  };
 
   return { notifications };
 };
