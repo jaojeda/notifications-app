@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Notification } from "./components/Notifications";
+import Container from "@mui/material/Container";
+import Notifications from "./components/Notifications";
 
 function App() {
   const [notifications, setNotifications] = useState([]);
@@ -16,11 +17,9 @@ function App() {
 
   return (
     <div className="App">
-      <Notification
-        id={notifications[0]?.id}
-        title={notifications[0]?.title}
-        content={notifications[0]?.content}
-      ></Notification>
+      <Container maxWidth="md">
+        <Notifications notifications={notifications}></Notifications>
+      </Container>
     </div>
   );
 }

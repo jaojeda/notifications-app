@@ -37,3 +37,16 @@ export const Notification = ({ id, title, content }) => {
     </Accordion>
   );
 };
+
+const Notifications = ({ notifications }) => {
+  const notificationsElements = notifications.map((notification) => (
+    <Notification
+      key={`${notification.id}-${notification.title}`}
+      {...notification}
+    />
+  ));
+
+  return <>{notificationsElements}</>;
+};
+
+export default Notifications;
