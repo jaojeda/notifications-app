@@ -1,9 +1,16 @@
 const express = require("express");
 const fs = require("fs/promises");
+const cors = require("cors");
 
 const port = 3200;
 
 const app = express();
+
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 const fileName = "/Users/jose/practice/notifications-app/app-be/test.json";
 
