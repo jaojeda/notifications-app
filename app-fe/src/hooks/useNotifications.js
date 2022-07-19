@@ -20,5 +20,18 @@ export const useNotifications = () => {
     );
   };
 
-  return { notifications };
+  const handleSnooze = async (id) => {
+    const res = await fetch(`http://localhost:3200/notifications/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ snoozed: true, lastSnooze: Date.now() }),
+    }).catch(console.error);
+    const data = await res.json();
+    const filteredData = filterSnoozed(data);
+    setNotifications(filteredData);
+  };
+
+  return { notifications, handleSnooze };
 };
