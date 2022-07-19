@@ -8,7 +8,7 @@ describe("app routes", () => {
     const data = await fs.readFile(fileName, "utf8");
     const formattedData = JSON.parse(data);
     formattedData.push({
-      id: 3,
+      id: 5,
       content: "test string",
       snooze: { snoozed: false, lastSnooze: 0 },
     });
@@ -29,17 +29,17 @@ describe("app routes", () => {
 
   it("updates data", async () => {
     const res = await request(app)
-      .put("/notifications/3")
+      .put("/notifications/5")
       .send({ snoozed: true, lastSnooze: 0 });
-    expect(JSON.parse(res.text)[2]).toEqual({
-      id: 3,
+    expect(JSON.parse(res.text)[4]).toEqual({
+      id: 5,
       content: "test string",
       snooze: { snoozed: true, lastSnooze: 0 },
     });
   });
 
   it("deletes an entry", async () => {
-    const res = await request(app).delete("/notifications/3");
-    expect(JSON.parse(res.text).length).toEqual(2);
+    const res = await request(app).delete("/notifications/5");
+    expect(JSON.parse(res.text).length).toEqual(4);
   });
 });
