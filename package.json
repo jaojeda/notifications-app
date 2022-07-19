@@ -4,5 +4,10 @@
   "main": "index.js",
   "repository": "https://github.com/jaojeda/notifications-app.git",
   "author": "Jose Ojeda <j.a.ojeda@live.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "app-be",
+    "app-fe"
+  ]
 }
