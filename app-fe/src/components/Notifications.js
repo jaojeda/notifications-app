@@ -9,7 +9,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Fab from "@mui/material/Fab";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-export const Notification = ({ id, title, content }) => {
+export const Notification = ({ id, title, content, handleSnooze }) => {
   const detailsRef = useRef(null);
   return (
     <Accordion>
@@ -18,7 +18,7 @@ export const Notification = ({ id, title, content }) => {
         aria-controls={`panel${id}a-content`}
         id={`panel${id}a-header`}
       >
-        <IconButton size="small">
+        <IconButton size="small" onClick={() => handleSnooze(id)}>
           <AlarmIcon />
         </IconButton>
         <Typography sx={{ padding: "5px" }}>{title}</Typography>
@@ -38,10 +38,11 @@ export const Notification = ({ id, title, content }) => {
   );
 };
 
-const Notifications = ({ notifications }) => {
+const Notifications = ({ notifications, handleSnooze }) => {
   const notificationsElements = notifications.map((notification) => (
     <Notification
       key={`${notification.id}-${notification.title}`}
+      handleSnooze={handleSnooze}
       {...notification}
     />
   ));
