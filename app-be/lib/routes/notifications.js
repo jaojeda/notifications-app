@@ -1,7 +1,8 @@
 const { Router } = require("express");
 const fs = require("fs/promises");
+const path = require("path");
 
-const fileName = "/Users/jose/practice/notifications-app/app-be/test.json";
+const fileName = path.join(__dirname, "../../test.json");
 
 module.exports = Router()
   .get("/", async (req, res, next) => {

@@ -1,10 +1,11 @@
 const request = require("supertest");
 const app = require("../lib/app");
 const fs = require("fs/promises");
+const path = require("path");
 
 describe("app routes", () => {
   beforeAll(async () => {
-    const fileName = "/Users/jose/practice/notifications-app/app-be/test.json";
+    const fileName = path.join(__dirname, "../test.json");
     const data = await fs.readFile(fileName, "utf8");
     const formattedData = JSON.parse(data);
     formattedData.push({
