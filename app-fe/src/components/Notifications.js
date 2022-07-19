@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -10,6 +10,7 @@ import Fab from "@mui/material/Fab";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 export const Notification = ({ id, title, content }) => {
+  const detailsRef = useRef(null);
   return (
     <Accordion>
       <AccordionSummary
@@ -20,11 +21,16 @@ export const Notification = ({ id, title, content }) => {
         <IconButton size="small">
           <AlarmIcon />
         </IconButton>
-        <Typography>{title}</Typography>
+        <Typography sx={{ padding: "5px" }}>{title}</Typography>
       </AccordionSummary>
-      <AccordionDetails>
+      <AccordionDetails ref={detailsRef}>
         <Typography>{content}</Typography>
-        <Fab>
+        <Fab
+          sx={{
+            position: "relative",
+            left: detailsRef?.current?.clientWidth - 100,
+          }}
+        >
           <DeleteIcon />
         </Fab>
       </AccordionDetails>
