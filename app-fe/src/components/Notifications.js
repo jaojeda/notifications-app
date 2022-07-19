@@ -9,8 +9,15 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Fab from "@mui/material/Fab";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-export const Notification = ({ id, title, content, handleSnooze }) => {
+export const Notification = ({
+  id,
+  title,
+  content,
+  handleSnooze,
+  handleDelete,
+}) => {
   const detailsRef = useRef(null);
+
   return (
     <Accordion>
       <AccordionSummary
@@ -30,6 +37,7 @@ export const Notification = ({ id, title, content, handleSnooze }) => {
             position: "relative",
             left: detailsRef?.current?.clientWidth - 100,
           }}
+          onClick={() => handleDelete(id)}
         >
           <DeleteIcon />
         </Fab>
@@ -38,11 +46,12 @@ export const Notification = ({ id, title, content, handleSnooze }) => {
   );
 };
 
-const Notifications = ({ notifications, handleSnooze }) => {
+const Notifications = ({ notifications, handleSnooze, handleDelete }) => {
   const notificationsElements = notifications.map((notification) => (
     <Notification
       key={`${notification.id}-${notification.title}`}
       handleSnooze={handleSnooze}
+      handleDelete={handleDelete}
       {...notification}
     />
   ));

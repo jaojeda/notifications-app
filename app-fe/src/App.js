@@ -3,7 +3,7 @@ import Notifications from "./components/Notifications";
 import { useNotifications } from "./hooks/useNotifications";
 
 function App() {
-  const { notifications, handleSnooze } = useNotifications();
+  const { notifications, handleSnooze, handleDelete } = useNotifications();
 
   return (
     <div className="App">
@@ -11,6 +11,7 @@ function App() {
         <Notifications
           notifications={notifications}
           handleSnooze={handleSnooze}
+          handleDelete={handleDelete}
         ></Notifications>
       </Container>
     </div>
