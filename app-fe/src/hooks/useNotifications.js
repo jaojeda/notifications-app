@@ -33,5 +33,14 @@ export const useNotifications = () => {
     setNotifications(filteredData);
   };
 
-  return { notifications, handleSnooze };
+  const handleDelete = async (id) => {
+    const res = await fetch(`http://localhost:3200/notifications/${id}`, {
+      method: "DELETE",
+    }).catch(console.error);
+    const data = await res.json();
+    const filteredData = filterSnoozed(data);
+    setNotifications(filteredData);
+  };
+
+  return { notifications, handleSnooze, handleDelete };
 };
