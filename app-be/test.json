@@ -7,5 +7,14 @@
       "snoozed": false,
       "lastSnooze": 0
     }
+  },
+  {
+    "id": 2,
+    "title": "Notification Title",
+    "content": "Etiam sed dolor id odio molestie pharetra eu eu nibh. Sed ac ornare odio. Quisque hendrerit dui eget felis consectetur auctor.",
+    "snooze": {
+      "snoozed": false,
+      "lastSnooze": 0
+    }
   }
 ]
