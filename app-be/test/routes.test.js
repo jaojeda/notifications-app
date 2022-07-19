@@ -10,7 +10,7 @@ describe("app routes", () => {
     formattedData.push({
       id: 3,
       content: "test string",
-      snooze: { snoozed: true, lastSnooze: 0 },
+      snooze: { snoozed: false, lastSnooze: 0 },
     });
     const newData = JSON.stringify(formattedData);
     await fs.writeFile(fileName, newData);
@@ -24,6 +24,17 @@ describe("app routes", () => {
       content:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce felis nisi, euismod sed massa et, consectetur cursus ipsum. Curabitur imperdiet urna mauris, a vulputate quam eleifend quis.",
       snooze: { snoozed: false, lastSnooze: 0 },
+    });
+  });
+
+  it("updates data", async () => {
+    const res = await request(app)
+      .put("/notifications/3")
+      .send({ snoozed: true, lastSnooze: 0 });
+    expect(JSON.parse(res.text)[2]).toEqual({
+      id: 3,
+      content: "test string",
+      snooze: { snoozed: true, lastSnooze: 0 },
     });
   });
 
