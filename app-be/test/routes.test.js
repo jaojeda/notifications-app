@@ -4,7 +4,7 @@ const fs = require("fs/promises");
 
 describe("app routes", () => {
   beforeAll(async () => {
-    const fileName = "/Users/jose/practice/monorepo-practice/server/test.json";
+    const fileName = "/Users/jose/practice/notifications-app/app-be/test.json";
     const data = await fs.readFile(fileName, "utf8");
     const formattedData = JSON.parse(data);
     formattedData.push({
